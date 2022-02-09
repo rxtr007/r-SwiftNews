@@ -23,6 +23,9 @@
 		03FE0B4527B47658003434B0 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE0B4427B47658003434B0 /* ImageLoader.swift */; };
 		03FE0B4927B47AD5003434B0 /* AwardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE0B4727B47AD5003434B0 /* AwardCollectionViewCell.swift */; };
 		03FE0B4A27B47AD5003434B0 /* AwardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FE0B4827B47AD5003434B0 /* AwardCollectionViewCell.xib */; };
+		03FE0B4D27B47DA4003434B0 /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE0B4C27B47DA4003434B0 /* PostDetailsViewController.swift */; };
+		03FE0B5127B47E0B003434B0 /* PostDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE0B4F27B47E0B003434B0 /* PostDetailTableViewCell.swift */; };
+		03FE0B5227B47E0B003434B0 /* PostDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FE0B5027B47E0B003434B0 /* PostDetailTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		03FE0B4427B47658003434B0 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		03FE0B4727B47AD5003434B0 /* AwardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardCollectionViewCell.swift; sourceTree = "<group>"; };
 		03FE0B4827B47AD5003434B0 /* AwardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AwardCollectionViewCell.xib; sourceTree = "<group>"; };
+		03FE0B4C27B47DA4003434B0 /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
+		03FE0B4F27B47E0B003434B0 /* PostDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailTableViewCell.swift; sourceTree = "<group>"; };
+		03FE0B5027B47E0B003434B0 /* PostDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostDetailTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +137,7 @@
 		0351BFD327B4663800ABC6EA /* App */ = {
 			isa = PBXGroup;
 			children = (
+				03FE0B4B27B47D85003434B0 /* PostDetails */,
 				0351BFD427B4663E00ABC6EA /* rSwift */,
 			);
 			path = App;
@@ -217,6 +224,24 @@
 			path = AwardCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		03FE0B4B27B47D85003434B0 /* PostDetails */ = {
+			isa = PBXGroup;
+			children = (
+				03FE0B4E27B47DEE003434B0 /* PostDetailTableViewCell */,
+				03FE0B4C27B47DA4003434B0 /* PostDetailsViewController.swift */,
+			);
+			path = PostDetails;
+			sourceTree = "<group>";
+		};
+		03FE0B4E27B47DEE003434B0 /* PostDetailTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				03FE0B4F27B47E0B003434B0 /* PostDetailTableViewCell.swift */,
+				03FE0B5027B47E0B003434B0 /* PostDetailTableViewCell.xib */,
+			);
+			path = PostDetailTableViewCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -275,6 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03FE0B5227B47E0B003434B0 /* PostDetailTableViewCell.xib in Resources */,
 				0351BFC727B4644B00ABC6EA /* LaunchScreen.storyboard in Resources */,
 				0351BFC427B4644B00ABC6EA /* Assets.xcassets in Resources */,
 				03FE0B4A27B47AD5003434B0 /* AwardCollectionViewCell.xib in Resources */,
@@ -299,8 +325,10 @@
 				0351BFD927B466B800ABC6EA /* RSwiftRedditViewController.swift in Sources */,
 				0351BFBB27B4644700ABC6EA /* AppDelegate.swift in Sources */,
 				0351BFDE27B46BDE00ABC6EA /* URLGettable.swift in Sources */,
+				03FE0B4D27B47DA4003434B0 /* PostDetailsViewController.swift in Sources */,
 				03FE0B4927B47AD5003434B0 /* AwardCollectionViewCell.swift in Sources */,
 				0351BFE427B46DC200ABC6EA /* ViewModel.swift in Sources */,
+				03FE0B5127B47E0B003434B0 /* PostDetailTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

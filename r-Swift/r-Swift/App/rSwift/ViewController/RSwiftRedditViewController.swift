@@ -89,7 +89,11 @@ class RSwiftRedditViewController: UIViewController {
         let message = "Oops, something went wrong!"
 
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        controller.addAction(UIAlertAction(title: "Close", style: .cancel, handler: nil))
+        controller.addAction(UIAlertAction(title: "Close", style: .cancel, handler: { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.activityIndicator.stopAnimating()
+            }
+        }))
         controller.addAction(UIAlertAction(title: "Retry", style: .default, handler: { _ in
             self.fetchRedditPostsForRSwift()
         }))
@@ -111,5 +115,14 @@ extension RSwiftRedditViewController: UITableViewDataSource, UITableViewDelegate
 
         cell.configure(post)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let post = viewModel.posts.value?[indexPath.row] else { return }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let postDetailsViewController = storyboard.instantiateViewController(withIdentifier: PostDetailsViewController.identifier) as! PostDetailsViewController
+        postDetailsViewController.post = post
+
+        navigationController?.pushViewController(postDetailsViewController, animated: true)
     }
 }
