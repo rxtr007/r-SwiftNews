@@ -12,6 +12,8 @@
 		0351BFC427B4644B00ABC6EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0351BFC327B4644B00ABC6EA /* Assets.xcassets */; };
 		0351BFC727B4644B00ABC6EA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0351BFC527B4644B00ABC6EA /* LaunchScreen.storyboard */; };
 		0351BFD927B466B800ABC6EA /* RSwiftRedditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351BFD827B466B800ABC6EA /* RSwiftRedditViewController.swift */; };
+		0351BFDB27B46B8A00ABC6EA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351BFDA27B46B8A00ABC6EA /* Model.swift */; };
+		0351BFDE27B46BDE00ABC6EA /* URLGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351BFDD27B46BDE00ABC6EA /* URLGettable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		0351BFC627B4644B00ABC6EA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0351BFC827B4644B00ABC6EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0351BFD827B466B800ABC6EA /* RSwiftRedditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSwiftRedditViewController.swift; sourceTree = "<group>"; };
+		0351BFDA27B46B8A00ABC6EA /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		0351BFDD27B46BDE00ABC6EA /* URLGettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLGettable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,7 @@
 		0351BFD027B465BD00ABC6EA /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				0351BFDC27B46BBC00ABC6EA /* Custom Protocols */,
 				0351BFD227B465D600ABC6EA /* Other */,
 				0351BFD127B465C600ABC6EA /* Assets */,
 			);
@@ -125,6 +130,7 @@
 		0351BFD527B4664D00ABC6EA /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0351BFDA27B46B8A00ABC6EA /* Model.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -142,6 +148,14 @@
 				0351BFD827B466B800ABC6EA /* RSwiftRedditViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0351BFDC27B46BBC00ABC6EA /* Custom Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				0351BFDD27B46BDE00ABC6EA /* URLGettable.swift */,
+			);
+			path = "Custom Protocols";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,8 +229,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0351BFDB27B46B8A00ABC6EA /* Model.swift in Sources */,
 				0351BFD927B466B800ABC6EA /* RSwiftRedditViewController.swift in Sources */,
 				0351BFBB27B4644700ABC6EA /* AppDelegate.swift in Sources */,
+				0351BFDE27B46BDE00ABC6EA /* URLGettable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
