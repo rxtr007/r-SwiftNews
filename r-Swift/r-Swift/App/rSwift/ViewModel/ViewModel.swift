@@ -25,7 +25,7 @@ struct RSwiftViewModel {
             guard let data = data else { onError(true); return }
             
             do {
-                var image: UIImage! = UIImage(named: "")!
+                var image: UIImage! = UIImage(named: "AppIcon")
                 
                 let redditPosts = try JSONDecoder().decode(Model.self, from: data)
                 
