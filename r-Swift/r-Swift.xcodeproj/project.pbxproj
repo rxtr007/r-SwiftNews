@@ -21,6 +21,8 @@
 		0351BFEA27B4702400ABC6EA /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0351BFE827B4702400ABC6EA /* PostTableViewCell.xib */; };
 		03FE0B4227B47608003434B0 /* Cancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE0B4127B47608003434B0 /* Cancellable.swift */; };
 		03FE0B4527B47658003434B0 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE0B4427B47658003434B0 /* ImageLoader.swift */; };
+		03FE0B4927B47AD5003434B0 /* AwardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FE0B4727B47AD5003434B0 /* AwardCollectionViewCell.swift */; };
+		03FE0B4A27B47AD5003434B0 /* AwardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 03FE0B4827B47AD5003434B0 /* AwardCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		0351BFE827B4702400ABC6EA /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 		03FE0B4127B47608003434B0 /* Cancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cancellable.swift; sourceTree = "<group>"; };
 		03FE0B4427B47658003434B0 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
+		03FE0B4727B47AD5003434B0 /* AwardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AwardCollectionViewCell.swift; sourceTree = "<group>"; };
+		03FE0B4827B47AD5003434B0 /* AwardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AwardCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,7 @@
 		0351BFE527B46FF500ABC6EA /* Custom Cells */ = {
 			isa = PBXGroup;
 			children = (
+				03FE0B4627B47ABE003434B0 /* AwardCollectionViewCell */,
 				0351BFE627B4700E00ABC6EA /* PostTableViewCell */,
 			);
 			path = "Custom Cells";
@@ -201,6 +206,15 @@
 				03FE0B4427B47658003434B0 /* ImageLoader.swift */,
 			);
 			path = ImageLoader;
+			sourceTree = "<group>";
+		};
+		03FE0B4627B47ABE003434B0 /* AwardCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				03FE0B4727B47AD5003434B0 /* AwardCollectionViewCell.swift */,
+				03FE0B4827B47AD5003434B0 /* AwardCollectionViewCell.xib */,
+			);
+			path = AwardCollectionViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +277,7 @@
 			files = (
 				0351BFC727B4644B00ABC6EA /* LaunchScreen.storyboard in Resources */,
 				0351BFC427B4644B00ABC6EA /* Assets.xcassets in Resources */,
+				03FE0B4A27B47AD5003434B0 /* AwardCollectionViewCell.xib in Resources */,
 				0351BFC227B4644700ABC6EA /* Main.storyboard in Resources */,
 				0351BFEA27B4702400ABC6EA /* PostTableViewCell.xib in Resources */,
 			);
@@ -284,6 +299,7 @@
 				0351BFD927B466B800ABC6EA /* RSwiftRedditViewController.swift in Sources */,
 				0351BFBB27B4644700ABC6EA /* AppDelegate.swift in Sources */,
 				0351BFDE27B46BDE00ABC6EA /* URLGettable.swift in Sources */,
+				03FE0B4927B47AD5003434B0 /* AwardCollectionViewCell.swift in Sources */,
 				0351BFE427B46DC200ABC6EA /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

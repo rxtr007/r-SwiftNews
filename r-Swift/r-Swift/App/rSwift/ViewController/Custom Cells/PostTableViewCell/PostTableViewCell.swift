@@ -119,6 +119,7 @@ class PostTableViewCell: UITableViewCell {
         if let allAwards = post.allAwards, !allAwards.isEmpty {
             hasAward = true
             awards = allAwards
+            setupAwardCollectionView()
             awardsCollectionView.layer.cornerRadius = 8
             awardsCollectionView.layer.borderColor = UIColor.gray.cgColor
             awardsCollectionView.layer.borderWidth = 1.0
@@ -129,6 +130,20 @@ class PostTableViewCell: UITableViewCell {
             awardsCollectionViewBottomConstraint.constant = PostTableViewCell.awardsCollectionViewDefaultBottom
             awardsCollectionViewHeightConstraint.constant = PostTableViewCell.awardsCollectionViewDefaultHeight
         }
+    }
+
+    private func setupAwardCollectionView() {
+        awardsCollectionView.register(UINib(nibName: AwardCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: AwardCollectionViewCell.identifier)
+        awardsCollectionView.dataSource = self
+        let spacing = 10.0
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: spacing / 2, left: spacing / 2, bottom: spacing / 2, right: spacing / 2)
+        layout.minimumLineSpacing = 8
+        layout.minimumInteritemSpacing = 0
+        layout.itemSize = CGSize(width: PostTableViewCell.awardsIconDefaultWidth, height: PostTableViewCell.awardsIconDefaultHeight)
+        awardsCollectionView.collectionViewLayout = layout
+        awardsCollectionView.showsHorizontalScrollIndicator = false
     }
 
     /// Request Thumbnail Using Image Loader if image from post model is not a placeholder image
@@ -155,5 +170,20 @@ class PostTableViewCell: UITableViewCell {
 extension PostTableViewCell: Identifiable {
     static var identifier: String {
         return String(describing: self)
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension PostTableViewCell: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("reloaded collection view")
+        return awards?.count ?? 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AwardCollectionViewCell.identifier, for: indexPath) as? AwardCollectionViewCell, let award = awards?[indexPath.item] else { return UICollectionViewCell() }
+        cell.configure(award)
+        return cell
     }
 }
