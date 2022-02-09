@@ -14,6 +14,8 @@
 		0351BFD927B466B800ABC6EA /* RSwiftRedditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351BFD827B466B800ABC6EA /* RSwiftRedditViewController.swift */; };
 		0351BFDB27B46B8A00ABC6EA /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351BFDA27B46B8A00ABC6EA /* Model.swift */; };
 		0351BFDE27B46BDE00ABC6EA /* URLGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351BFDD27B46BDE00ABC6EA /* URLGettable.swift */; };
+		0351BFE027B46D0400ABC6EA /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351BFDF27B46D0400ABC6EA /* Observable.swift */; };
+		0351BFE227B46D3600ABC6EA /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351BFE127B46D3600ABC6EA /* Identifiable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		0351BFD827B466B800ABC6EA /* RSwiftRedditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSwiftRedditViewController.swift; sourceTree = "<group>"; };
 		0351BFDA27B46B8A00ABC6EA /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0351BFDD27B46BDE00ABC6EA /* URLGettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLGettable.swift; sourceTree = "<group>"; };
+		0351BFDF27B46D0400ABC6EA /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		0351BFE127B46D3600ABC6EA /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +158,8 @@
 			isa = PBXGroup;
 			children = (
 				0351BFDD27B46BDE00ABC6EA /* URLGettable.swift */,
+				0351BFDF27B46D0400ABC6EA /* Observable.swift */,
+				0351BFE127B46D3600ABC6EA /* Identifiable.swift */,
 			);
 			path = "Custom Protocols";
 			sourceTree = "<group>";
@@ -230,6 +236,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0351BFDB27B46B8A00ABC6EA /* Model.swift in Sources */,
+				0351BFE227B46D3600ABC6EA /* Identifiable.swift in Sources */,
+				0351BFE027B46D0400ABC6EA /* Observable.swift in Sources */,
 				0351BFD927B466B800ABC6EA /* RSwiftRedditViewController.swift in Sources */,
 				0351BFBB27B4644700ABC6EA /* AppDelegate.swift in Sources */,
 				0351BFDE27B46BDE00ABC6EA /* URLGettable.swift in Sources */,
