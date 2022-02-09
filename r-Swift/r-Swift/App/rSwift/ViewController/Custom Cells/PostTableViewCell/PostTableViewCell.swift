@@ -38,8 +38,17 @@ class PostTableViewCell: UITableViewCell {
 
     var awards: [PostAward]? = []
 
+    private lazy var imageLoader = ImageLoader()
+
+    private var imageRequest: Cancellable?
+
     override func awakeFromNib() {
         super.awakeFromNib()
+        if #available(iOS 13.0, *) {
+            placeholderImage = ImageLoader.placeholderSFImage
+        } else {
+            placeholderImage = ImageLoader.placeholderImage
+        }
         cleanupViews()
     }
 
@@ -101,6 +110,7 @@ class PostTableViewCell: UITableViewCell {
 
             if post.thumbnailImage == placeholderImage {
                 // Download Image
+                downloadThumbnail(for: post)
             }
         }
     }
@@ -120,7 +130,27 @@ class PostTableViewCell: UITableViewCell {
             awardsCollectionViewHeightConstraint.constant = PostTableViewCell.awardsCollectionViewDefaultHeight
         }
     }
+
+    /// Request Thumbnail Using Image Loader if image from post model is not a placeholder image
+    private func downloadThumbnail(for post: PostCellModel) {
+        activityIndicatorView.startAnimating()
+        activityIndicatorView.isHidden = false
+        imageRequest = imageLoader.loadImage(for: post, completion: { [weak self] fetchedPost, fetchedImage, imageDownloadError in
+            self?.activityIndicatorView.stopAnimating()
+            self?.activityIndicatorView.isHidden = true
+            if imageDownloadError == nil {
+                // update the model if the same image does not already exists for that post model
+                if let img = fetchedImage, fetchedPost.thumbnailImage != img {
+                    post.thumbnailImage = img
+                    self?.thumbnailImageView.image = img
+                    self?.thumbnailImageView.layer.borderWidth = 2.0
+                }
+            }
+        })
+    }
 }
+
+// MARK: - Identifiable Conformance for setting Reuse Identifier
 
 extension PostTableViewCell: Identifiable {
     static var identifier: String {

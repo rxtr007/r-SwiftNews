@@ -25,7 +25,13 @@ struct RSwiftViewModel {
             guard let data = data else { onError(true); return }
             
             do {
-                var image: UIImage! = UIImage(named: "AppIcon")
+                var image: UIImage!
+                
+                if #available(iOS 13.0, *) {
+                    image = ImageLoader.placeholderSFImage
+                } else {
+                    image = ImageLoader.placeholderImage
+                }
                 
                 let redditPosts = try JSONDecoder().decode(Model.self, from: data)
                 
