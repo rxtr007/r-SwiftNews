@@ -8,17 +8,17 @@
 import Foundation
 import UIKit.UIImage
 
-// MARK: - News Object to use inside table view cell
+// MARK: - Post Object to use inside table view cell
 
-/// News Object to use inside table view cell
-class NewsCellModel {
+/// Post Object to use inside table view cell
+class PostCellModel {
     let id: String
     let title: String
     let description: String
     let thumbnail: String?
     let thumbnailWidth: Int?
     let thumbnailHeight: Int?
-    let allAwards: [NewsAward]?
+    let allAwards: [PostAward]?
     var thumbnailImage: UIImage!
 
     init(
@@ -28,7 +28,7 @@ class NewsCellModel {
         thumbnail: String?,
         thumbnailWidth: Int?,
         thumbnailHeight: Int?,
-        allAwards: [NewsAward]?,
+        allAwards: [PostAward]?,
         thumbnailImage: UIImage
     ) {
         self.id = id
@@ -42,15 +42,15 @@ class NewsCellModel {
     }
 }
 
-// MARK: NewsCellModel URLGettable icon URL
+// MARK: PostCellModel URLGettable icon URL
 
-extension NewsCellModel: URLGettable {
+extension PostCellModel: URLGettable {
     var iconURL: URL? {
         return URL(string: "\(thumbnail ?? "")")!
     }
 }
 
-class NewsAward {
+class PostAward {
     let iconURLString: String?
     let iconHeight: Int?
     let iconWidth: Int?
@@ -68,18 +68,18 @@ class NewsAward {
     }
 }
 
-// MARK: NewsAward URLGettable icon URL
+// MARK: PostAward URLGettable icon URL
 
-extension NewsAward: URLGettable {
+extension PostAward: URLGettable {
     var iconURL: URL? {
         return URL(string: "\(iconURLString ?? "")")!
     }
 }
 
-// MARK: - Underlying News Model in News Object
+// MARK: - Underlying Post Model in Post Object
 
-/// Underlying News Model in News Object
-struct News {
+/// Underlying Post Model in Post Object
+struct Post {
     let id: String
     let description: String
     let title: String
@@ -89,9 +89,9 @@ struct News {
     let allAwards: [Award]?
 }
 
-// MARK: News Model Coding Keys
+// MARK: Post Model Coding Keys
 
-extension News: Decodable {
+extension Post: Decodable {
     enum CodingKeys: String, CodingKey {
         case id, title, thumbnail
         case description = "selftext"
@@ -103,7 +103,7 @@ extension News: Decodable {
 
 // MARK: - Award Model
 
-/// Award Object Model for each news/post
+/// Award Object Model for each post
 struct Award {
     let iconURL: String
     let iconHeight: Int
@@ -120,18 +120,18 @@ extension Award: Decodable {
     }
 }
 
-// MARK: - News Object
+// MARK: - Posts Object
 
-/// News Object for each news/post in r/Swift
-struct SwiftNews {
-    let news: News
+/// Posts Object for post collection in r/Swift
+struct Posts {
+    let post: Post
 }
 
-// MARK: News Object Coding Keys
+// MARK: Post Object Coding Keys
 
-extension SwiftNews: Decodable {
+extension Posts: Decodable {
     enum CodingKeys: String, CodingKey {
-        case news = "data"
+        case post = "data"
     }
 }
 
@@ -139,7 +139,7 @@ extension SwiftNews: Decodable {
 
 /// Top Level Children in r/Swift Object
 struct Children: Decodable {
-    let children: [SwiftNews]
+    let children: [Posts]
 }
 
 // MARK: - Top Level Object in r/Swift json

@@ -16,6 +16,7 @@
 		0351BFDE27B46BDE00ABC6EA /* URLGettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351BFDD27B46BDE00ABC6EA /* URLGettable.swift */; };
 		0351BFE027B46D0400ABC6EA /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351BFDF27B46D0400ABC6EA /* Observable.swift */; };
 		0351BFE227B46D3600ABC6EA /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351BFE127B46D3600ABC6EA /* Identifiable.swift */; };
+		0351BFE427B46DC200ABC6EA /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351BFE327B46DC200ABC6EA /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		0351BFDD27B46BDE00ABC6EA /* URLGettable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLGettable.swift; sourceTree = "<group>"; };
 		0351BFDF27B46D0400ABC6EA /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		0351BFE127B46D3600ABC6EA /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
+		0351BFE327B46DC200ABC6EA /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 		0351BFD627B4665300ABC6EA /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0351BFE327B46DC200ABC6EA /* ViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				0351BFD927B466B800ABC6EA /* RSwiftRedditViewController.swift in Sources */,
 				0351BFBB27B4644700ABC6EA /* AppDelegate.swift in Sources */,
 				0351BFDE27B46BDE00ABC6EA /* URLGettable.swift in Sources */,
+				0351BFE427B46DC200ABC6EA /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
