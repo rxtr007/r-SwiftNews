@@ -17,6 +17,8 @@
 		0351BFE027B46D0400ABC6EA /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351BFDF27B46D0400ABC6EA /* Observable.swift */; };
 		0351BFE227B46D3600ABC6EA /* Identifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351BFE127B46D3600ABC6EA /* Identifiable.swift */; };
 		0351BFE427B46DC200ABC6EA /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351BFE327B46DC200ABC6EA /* ViewModel.swift */; };
+		0351BFE927B4702400ABC6EA /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0351BFE727B4702400ABC6EA /* PostTableViewCell.swift */; };
+		0351BFEA27B4702400ABC6EA /* PostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0351BFE827B4702400ABC6EA /* PostTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		0351BFDF27B46D0400ABC6EA /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		0351BFE127B46D3600ABC6EA /* Identifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.swift; sourceTree = "<group>"; };
 		0351BFE327B46DC200ABC6EA /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		0351BFE727B4702400ABC6EA /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
+		0351BFE827B4702400ABC6EA /* PostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,7 @@
 		0351BFD727B4665900ABC6EA /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				0351BFE527B46FF500ABC6EA /* Custom Cells */,
 				0351BFD827B466B800ABC6EA /* RSwiftRedditViewController.swift */,
 			);
 			path = ViewController;
@@ -165,6 +170,23 @@
 				0351BFE127B46D3600ABC6EA /* Identifiable.swift */,
 			);
 			path = "Custom Protocols";
+			sourceTree = "<group>";
+		};
+		0351BFE527B46FF500ABC6EA /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0351BFE627B4700E00ABC6EA /* PostTableViewCell */,
+			);
+			path = "Custom Cells";
+			sourceTree = "<group>";
+		};
+		0351BFE627B4700E00ABC6EA /* PostTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				0351BFE727B4702400ABC6EA /* PostTableViewCell.swift */,
+				0351BFE827B4702400ABC6EA /* PostTableViewCell.xib */,
+			);
+			path = PostTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +250,7 @@
 				0351BFC727B4644B00ABC6EA /* LaunchScreen.storyboard in Resources */,
 				0351BFC427B4644B00ABC6EA /* Assets.xcassets in Resources */,
 				0351BFC227B4644700ABC6EA /* Main.storyboard in Resources */,
+				0351BFEA27B4702400ABC6EA /* PostTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,6 +264,7 @@
 				0351BFDB27B46B8A00ABC6EA /* Model.swift in Sources */,
 				0351BFE227B46D3600ABC6EA /* Identifiable.swift in Sources */,
 				0351BFE027B46D0400ABC6EA /* Observable.swift in Sources */,
+				0351BFE927B4702400ABC6EA /* PostTableViewCell.swift in Sources */,
 				0351BFD927B466B800ABC6EA /* RSwiftRedditViewController.swift in Sources */,
 				0351BFBB27B4644700ABC6EA /* AppDelegate.swift in Sources */,
 				0351BFDE27B46BDE00ABC6EA /* URLGettable.swift in Sources */,
