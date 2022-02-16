@@ -1,24 +1,28 @@
 //
-//  ViewModel.swift
+//  RSwiftViewModel.swift
 //  r-Swift
-//
-//  Created by Sachin Ambegave on 10/02/22.
-//
 
 import Foundation
 import UIKit.UIImage
 
+// MARK: - RSwiftViewModel
+
 struct RSwiftViewModel {
+    /// number of posts in reddit channel r/Swift
     var posts: Observable<[PostCellModel]> = Observable([])
     
+    // MARK: loadRedditPosts
+
+    /// Load Reddit Posts by making the Network Request
     func loadRedditPosts(onError: @escaping (Bool) -> Void) {
-        let baseURL = "https://www.reddit.com/"
-        let endpoint = "r/swift/.json"
-        let urlSession = URLSession.shared
+        guard let url = URL(string: "\(Constants.API.BaseURL)\(Constants.API.Endpoint)") else { onError(true); return }
         
-        guard let url = URL(string: "\(baseURL)\(endpoint)") else { onError(true); return }
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = Constants.CGFloatValue.k60
+        config.timeoutIntervalForResource = Constants.CGFloatValue.k60
+        let session = URLSession(configuration: config)
         
-        urlSession.dataTask(with: url) { data, _, error in
+        session.dataTask(with: url) { data, _, error in
             
             guard error == nil else { onError(true); return }
             
@@ -51,17 +55,9 @@ struct RSwiftViewModel {
                 posts.value = rPosts
                 onError(false)
             } catch {
-                onError(true)
                 print(error.localizedDescription)
+                onError(true)
             }
         }.resume()
     }
-}
-
-enum RedditPostsError: Error {
-    case apiError
-    case invalidEndPoint
-    case invalidResponse
-    case noData
-    case serializationError
 }

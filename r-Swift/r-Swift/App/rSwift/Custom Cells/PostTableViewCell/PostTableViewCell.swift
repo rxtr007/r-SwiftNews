@@ -1,35 +1,32 @@
 //
 //  PostTableViewCell.swift
 //  r-Swift
-//
-//  Created by Sachin Ambegave on 10/02/22.
-//
 
 import UIKit
 
+// MARK: - PostTableViewCell
+
 class PostTableViewCell: UITableViewCell {
-    private static var thumbnailImageViewDefaultTop: CGFloat = 8
-    private static var thumbnailImageViewDefaultBottom: CGFloat = 8
-    private static var thumbnailImageViewDefaultHeight: CGFloat = 80
+    private static var thumbnailImageViewDefaultTop: CGFloat = Constants.CGFloatValue.k8
+    private static var thumbnailImageViewDefaultBottom: CGFloat = Constants.CGFloatValue.k8
+    private static var thumbnailImageViewDefaultHeight: CGFloat = Constants.CGFloatValue.k80
 
-    private static var awardsCollectionViewDefaultTop: CGFloat = 4
-    private static var awardsCollectionViewDefaultBottom: CGFloat = 8
-    private static var awardsCollectionViewDefaultHeight: CGFloat = 40
-    private static var awardsCollectionViewMaxWidth: CGFloat = (UIScreen.main.bounds.width - 32)
+    private static var awardsCollectionViewDefaultTop: CGFloat = Constants.CGFloatValue.k4
+    private static var awardsCollectionViewDefaultBottom: CGFloat = Constants.CGFloatValue.k8
+    private static var awardsCollectionViewDefaultHeight: CGFloat = Constants.CGFloatValue.k40
+    private static var awardsCollectionViewMaxWidth: CGFloat = (Constants.ScreenSize.Width - Constants.CGFloatValue.k32)
 
-    private static var awardsIconDefaultHeight: CGFloat = 35
-    private static var awardsIconDefaultWidth: CGFloat = 35
+    private static var awardsIconDefaultHeight: CGFloat = Constants.CGFloatValue.k35
+    private static var awardsIconDefaultWidth: CGFloat = Constants.CGFloatValue.k35
 
     @IBOutlet private var postTitleLabel: UILabel!
 
+    @IBOutlet private var thumbnailImageContainerView: UIView!
     @IBOutlet private var thumbnailImageView: UIImageView!
-    @IBOutlet private var thumbnailImageViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet private var thumbnailImageViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet private var thumbnailImageViewHeightConstraint: NSLayoutConstraint!
 
+    @IBOutlet private var awardsCollectionContainerView: UIView!
     @IBOutlet private var awardsCollectionView: UICollectionView!
-    @IBOutlet private var awardsCollectionViewBottomConstraint: NSLayoutConstraint!
-    @IBOutlet private var awardsCollectionViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private var awardsCollectionViewWidthConstraint: NSLayoutConstraint!
 
     @IBOutlet private var activityIndicatorView: UIActivityIndicatorView!
@@ -42,6 +39,8 @@ class PostTableViewCell: UITableViewCell {
 
     private var imageRequest: Cancellable?
 
+    // MARK: awakeFromNib
+
     override func awakeFromNib() {
         super.awakeFromNib()
         if #available(iOS 13.0, *) {
@@ -52,24 +51,25 @@ class PostTableViewCell: UITableViewCell {
         cleanupViews()
     }
 
+    // MARK: prepareForReuse
+
     override func prepareForReuse() {
         super.prepareForReuse()
         cleanupViews()
         thumbnailImageView.image = nil
     }
 
+    // MARK: cleanupViews
+
     private func cleanupViews() {
         activityIndicatorView.isHidden = true
         activityIndicatorView.stopAnimating()
 
-        awardsCollectionViewBottomConstraint.constant = 0
-        awardsCollectionViewHeightConstraint.constant = 0
-        awardsCollectionViewWidthConstraint.constant = 0
-
-        thumbnailImageViewTopConstraint.constant = 0
-        thumbnailImageViewBottomConstraint.constant = 0
-        thumbnailImageViewHeightConstraint.constant = 0
+        thumbnailImageContainerView.isHidden = true
+        awardsCollectionContainerView.isHidden = true
     }
+
+    // MARK: configure
 
     func configure(_ post: PostCellModel) {
         var hasThumbnail = false
@@ -78,30 +78,25 @@ class PostTableViewCell: UITableViewCell {
         checkIfHasAwards(for: post, &hasAward)
         checkIfHasThumbnail(for: post, &hasThumbnail)
 
-        if hasThumbnail, hasAward {
-            thumbnailImageViewBottomConstraint.constant = PostTableViewCell.awardsCollectionViewDefaultTop
-        } else if !hasThumbnail, !hasAward {
-            thumbnailImageViewTopConstraint.constant = PostTableViewCell.thumbnailImageViewDefaultTop
-        }
-
         postTitleLabel.text = post.title
     }
 
+    // MARK: checkIfHasThumbnail
+
     private func checkIfHasThumbnail(for post: PostCellModel, _ hasThumbnail: inout Bool) {
-        if let thumbnailHeight = post.thumbnailHeight, thumbnailHeight != 0, let thumbnailWidth = post.thumbnailWidth, thumbnailWidth != 0, let thumbnail = post.thumbnail, thumbnail != "self" {
+        let k0 = Constants.CGFloatValue.k0.intValue
+        if let thumbnailHeight = post.thumbnailHeight, thumbnailHeight != k0, let thumbnailWidth = post.thumbnailWidth, thumbnailWidth != k0, let thumbnail = post.thumbnail, thumbnail != Constants.Strings.Self {
             hasThumbnail = true
             activityIndicatorView.isHidden = false
             activityIndicatorView.startAnimating()
-            thumbnailImageViewTopConstraint.constant = PostTableViewCell.thumbnailImageViewDefaultTop
-            thumbnailImageViewBottomConstraint.constant = PostTableViewCell.thumbnailImageViewDefaultBottom
-            if let height = post.thumbnailHeight {
-                thumbnailImageViewHeightConstraint.constant = CGFloat(height * 2)
+            if let height = post.thumbnailHeight, height != k0, let width = post.thumbnailWidth, width != k0 {
+                thumbnailImageViewHeightConstraint.constant = CGFloat(height * Constants.CGFloatValue.k2.intValue)
                 thumbnailImageView.contentMode = .scaleToFill
-                thumbnailImageView.layer.cornerRadius = 8
+                thumbnailImageView.layer.cornerRadius = Constants.CGFloatValue.k8
                 thumbnailImageView.layer.borderColor = UIColor.cyan.cgColor
-                thumbnailImageView.layer.borderWidth = 1.0
+                thumbnailImageView.layer.borderWidth = Constants.CGFloatValue.k1
+                thumbnailImageContainerView.isHidden = false
             } else {
-                thumbnailImageViewHeightConstraint.constant = PostTableViewCell.thumbnailImageViewDefaultHeight
                 thumbnailImageView.contentMode = .scaleAspectFit
             }
             thumbnailImageView.image = post.thumbnailImage
@@ -115,36 +110,41 @@ class PostTableViewCell: UITableViewCell {
         }
     }
 
+    // MARK: checkIfHasAwards
+
     private func checkIfHasAwards(for post: PostCellModel, _ hasAward: inout Bool) {
         if let allAwards = post.allAwards, !allAwards.isEmpty {
             hasAward = true
             awards = allAwards
+            awardsCollectionContainerView.isHidden = false
             setupAwardCollectionView()
-            awardsCollectionView.layer.cornerRadius = 8
+            awardsCollectionView.layer.cornerRadius = Constants.CGFloatValue.k8
             awardsCollectionView.layer.borderColor = UIColor.gray.cgColor
-            awardsCollectionView.layer.borderWidth = 1.0
+            awardsCollectionView.layer.borderWidth = Constants.CGFloatValue.k1
 
-            let collectionViewCustomWidth = CGFloat(allAwards.count * 44)
+            let collectionViewCustomWidth = CGFloat(allAwards.count * Constants.CGFloatValue.k44.intValue)
             awardsCollectionViewWidthConstraint.constant = (collectionViewCustomWidth < PostTableViewCell.awardsCollectionViewMaxWidth) ? collectionViewCustomWidth : PostTableViewCell.awardsCollectionViewMaxWidth
-            thumbnailImageViewBottomConstraint.constant = PostTableViewCell.awardsCollectionViewDefaultTop
-            awardsCollectionViewBottomConstraint.constant = PostTableViewCell.awardsCollectionViewDefaultBottom
-            awardsCollectionViewHeightConstraint.constant = PostTableViewCell.awardsCollectionViewDefaultHeight
         }
     }
+
+    // MARK: setupAwardCollectionView
 
     private func setupAwardCollectionView() {
         awardsCollectionView.register(UINib(nibName: AwardCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: AwardCollectionViewCell.identifier)
         awardsCollectionView.dataSource = self
-        let spacing = 10.0
+        let spacing = Constants.CGFloatValue.k10
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: spacing / 2, left: spacing / 2, bottom: spacing / 2, right: spacing / 2)
-        layout.minimumLineSpacing = 8
-        layout.minimumInteritemSpacing = 0
+        let k2 = Constants.CGFloatValue.k2
+        layout.sectionInset = UIEdgeInsets(top: spacing / k2, left: spacing / k2, bottom: spacing / k2, right: spacing / k2)
+        layout.minimumLineSpacing = Constants.CGFloatValue.k8
+        layout.minimumInteritemSpacing = Constants.CGFloatValue.k0
         layout.itemSize = CGSize(width: PostTableViewCell.awardsIconDefaultWidth, height: PostTableViewCell.awardsIconDefaultHeight)
         awardsCollectionView.collectionViewLayout = layout
         awardsCollectionView.showsHorizontalScrollIndicator = false
     }
+
+    // MARK: downloadThumbnail
 
     /// Request Thumbnail Using Image Loader if image from post model is not a placeholder image
     private func downloadThumbnail(for post: PostCellModel) {
@@ -158,32 +158,18 @@ class PostTableViewCell: UITableViewCell {
                 if let img = fetchedImage, fetchedPost.thumbnailImage != img {
                     post.thumbnailImage = img
                     self?.thumbnailImageView.image = img
-                    self?.thumbnailImageView.layer.borderWidth = 2.0
+                    self?.thumbnailImageView.layer.borderWidth = Constants.CGFloatValue.k2
                 }
             }
         })
     }
 }
 
-// MARK: - Identifiable Conformance for setting Reuse Identifier
+// MARK: - Identifiable
 
 extension PostTableViewCell: Identifiable {
+    /// Identifiable Conformance for setting Reuse Identifier
     static var identifier: String {
         return String(describing: self)
-    }
-}
-
-// MARK: - UICollectionViewDataSource
-
-extension PostTableViewCell: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("reloaded collection view")
-        return awards?.count ?? 0
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AwardCollectionViewCell.identifier, for: indexPath) as? AwardCollectionViewCell, let award = awards?[indexPath.item] else { return UICollectionViewCell() }
-        cell.configure(award)
-        return cell
     }
 }

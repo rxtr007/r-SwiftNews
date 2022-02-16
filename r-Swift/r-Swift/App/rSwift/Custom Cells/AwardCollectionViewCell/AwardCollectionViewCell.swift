@@ -1,11 +1,10 @@
 //
 //  AwardCollectionViewCell.swift
 //  r-Swift
-//
-//  Created by Sachin Ambegave on 10/02/22.
-//
 
 import UIKit
+
+// MARK: - AwardCollectionViewCell
 
 class AwardCollectionViewCell: UICollectionViewCell {
     @IBOutlet private var awardImageView: UIImageView!
@@ -17,6 +16,8 @@ class AwardCollectionViewCell: UICollectionViewCell {
     private lazy var imageLoader = ImageLoader()
 
     private var imageRequest: Cancellable?
+
+    // MARK: awakeFromNib
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,6 +32,8 @@ class AwardCollectionViewCell: UICollectionViewCell {
         activityIndicatorView.stopAnimating()
     }
 
+    // MARK: prepareForReuse
+
     override func prepareForReuse() {
         super.prepareForReuse()
         awardImageView.image = nil
@@ -38,6 +41,8 @@ class AwardCollectionViewCell: UICollectionViewCell {
         // Cancel Image Request
         imageRequest?.cancel()
     }
+
+    // MARK: configure
 
     func configure(_ award: PostAward) {
         awardImageView.contentMode = .scaleAspectFit
@@ -54,6 +59,8 @@ class AwardCollectionViewCell: UICollectionViewCell {
             }
         }
     }
+
+    // MARK: downloadIcon
 
     /// Request Thumbnail Using Image Loader if image from post model is not a placeholder image
     private func downloadIcon(for award: PostAward) {
@@ -73,9 +80,10 @@ class AwardCollectionViewCell: UICollectionViewCell {
     }
 }
 
-// MARK: - Identifiable Conformance for setting Reuse Identifier
+// MARK: - Identifiable
 
 extension AwardCollectionViewCell: Identifiable {
+    /// Identifiable Conformance for setting Reuse Identifier
     static var identifier: String {
         return String(describing: self)
     }

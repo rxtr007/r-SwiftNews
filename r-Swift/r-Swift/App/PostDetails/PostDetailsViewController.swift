@@ -1,25 +1,25 @@
 //
 //  PostDetailsViewController.swift
 //  r-Swift
-//
-//  Created by Sachin Ambegave on 10/02/22.
-//
 
 import UIKit
+
+// MARK: - PostDetailsViewController
 
 class PostDetailsViewController: UIViewController {
     lazy var tableView: UITableView = {
         let _tableView = UITableView(frame: .zero)
         _tableView.register(UINib(nibName: PostDetailTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: PostDetailTableViewCell.identifier)
         _tableView.dataSource = self
-        _tableView.delegate = self
         _tableView.separatorStyle = .none
-        _tableView.estimatedRowHeight = 200
+        _tableView.estimatedRowHeight = Constants.CGFloatValue.k200
         _tableView.rowHeight = UITableView.automaticDimension
         return _tableView
     }()
 
     weak var post: PostCellModel?
+
+    // MARK: viewDidAppear
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -33,6 +33,8 @@ class PostDetailsViewController: UIViewController {
         }
     }
 
+    // MARK: viewDidLoad
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
@@ -40,14 +42,22 @@ class PostDetailsViewController: UIViewController {
     }
 }
 
-extension PostDetailsViewController: UITableViewDataSource, UITableViewDelegate {
+// MARK: - UITableViewDataSource
+
+extension PostDetailsViewController: UITableViewDataSource {
+    // MARK: numberOfSections
+
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return Constants.CGFloatValue.k1.intValue
     }
 
+    // MARK: numberOfRowsInSection
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return Constants.CGFloatValue.k1.intValue
     }
+
+    // MARK: cellForRowAt
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PostDetailTableViewCell.identifier, for: indexPath) as? PostDetailTableViewCell, let post = self.post else { return UITableViewCell() }
@@ -58,9 +68,10 @@ extension PostDetailsViewController: UITableViewDataSource, UITableViewDelegate 
     }
 }
 
-// MARK: - Identifiable Conformance for setting identifier
+// MARK: - Identifiable
 
 extension PostDetailsViewController: Identifiable {
+    /// Identifiable Conformance for setting identifier
     static var identifier: String {
         return String(describing: self)
     }

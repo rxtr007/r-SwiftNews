@@ -1,15 +1,14 @@
 //
 //  PostDetailTableViewCell.swift
 //  r-Swift
-//
-//  Created by Sachin Ambegave on 10/02/22.
-//
 
 import UIKit
 
+// MARK: - PostDetailTableViewCell
+
 class PostDetailTableViewCell: UITableViewCell {
-    private static var thumbnailImageViewDefaultBottom: CGFloat = 8
-    private static var thumbnailImageViewDefaultHeight: CGFloat = 80
+    private static var thumbnailImageViewDefaultBottom: CGFloat = Constants.CGFloatValue.k8
+    private static var thumbnailImageViewDefaultHeight: CGFloat = Constants.CGFloatValue.k80
 
     @IBOutlet private var postDescriptionLabel: UILabel!
 
@@ -25,6 +24,8 @@ class PostDetailTableViewCell: UITableViewCell {
 
     private var imageRequest: Cancellable?
 
+    // MARK: awakeFromNib
+
     override func awakeFromNib() {
         super.awakeFromNib()
         if #available(iOS 13.0, *) {
@@ -35,13 +36,7 @@ class PostDetailTableViewCell: UITableViewCell {
         cleanupViews()
     }
 
-    private func cleanupViews() {
-        activityIndicatorView.isHidden = true
-        activityIndicatorView.stopAnimating()
-
-        thumbnailImageViewBottomConstraint.constant = 0
-        thumbnailImageViewHeightConstraint.constant = 0
-    }
+    // MARK: prepareForReuse
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -52,19 +47,32 @@ class PostDetailTableViewCell: UITableViewCell {
         imageRequest?.cancel()
     }
 
+    // MARK: cleanupViews
+
+    private func cleanupViews() {
+        activityIndicatorView.isHidden = true
+        activityIndicatorView.stopAnimating()
+
+        thumbnailImageViewBottomConstraint.constant = Constants.CGFloatValue.k0
+        thumbnailImageViewHeightConstraint.constant = Constants.CGFloatValue.k0
+    }
+
+    // MARK: configure
+
     func configure(_ post: PostCellModel) {
-        if let thumbnailHeight = post.thumbnailHeight, thumbnailHeight != 0, let thumbnailWidth = post.thumbnailWidth, thumbnailWidth != 0, let thumbnail = post.thumbnail, thumbnail != "self" {
+        let k0 = Constants.CGFloatValue.k0.intValue
+        if let thumbnailHeight = post.thumbnailHeight, thumbnailHeight != k0, let thumbnailWidth = post.thumbnailWidth, thumbnailWidth != k0, let thumbnail = post.thumbnail, thumbnail != Constants.Strings.Self {
             activityIndicatorView.isHidden = false
             activityIndicatorView.startAnimating()
             thumbnailImageViewBottomConstraint.constant = PostDetailTableViewCell.thumbnailImageViewDefaultBottom
             thumbnailImageViewHeightConstraint.constant = PostDetailTableViewCell.thumbnailImageViewDefaultHeight
 
             if let height = post.thumbnailHeight {
-                thumbnailImageViewHeightConstraint.constant = CGFloat(height * 2)
+                thumbnailImageViewHeightConstraint.constant = CGFloat(height * Constants.CGFloatValue.k2.intValue)
                 thumbnailImageView.contentMode = .scaleToFill
-                thumbnailImageView.layer.cornerRadius = 8
+                thumbnailImageView.layer.cornerRadius = Constants.CGFloatValue.k8
                 thumbnailImageView.layer.borderColor = UIColor.cyan.cgColor
-                thumbnailImageView.layer.borderWidth = 1.0
+                thumbnailImageView.layer.borderWidth = Constants.CGFloatValue.k1
             } else {
                 thumbnailImageViewHeightConstraint.constant = PostDetailTableViewCell.thumbnailImageViewDefaultHeight
                 thumbnailImageView.contentMode = .scaleAspectFit
@@ -81,6 +89,8 @@ class PostDetailTableViewCell: UITableViewCell {
         postDescriptionLabel.text = post.description
     }
 
+    // MARK: downloadThumbnail
+
     /// Request Thumbnail Using Image Loader if image from news model is not a placeholder image
     private func downloadThumbnail(for post: PostCellModel) {
         activityIndicatorView.startAnimating()
@@ -93,16 +103,17 @@ class PostDetailTableViewCell: UITableViewCell {
                 if let img = fetchedImage, fetchedNews.thumbnailImage != img {
                     post.thumbnailImage = img
                     self?.thumbnailImageView.image = img
-                    self?.thumbnailImageView.layer.borderWidth = 2.0
+                    self?.thumbnailImageView.layer.borderWidth = Constants.CGFloatValue.k2
                 }
             }
         })
     }
 }
 
-// MARK: - Identifiable Conformance for setting Reuse Identifier
+// MARK: - Identifiable
 
 extension PostDetailTableViewCell: Identifiable {
+    /// Identifiable Conformance for setting Reuse Identifier
     static var identifier: String {
         return String(describing: self)
     }
