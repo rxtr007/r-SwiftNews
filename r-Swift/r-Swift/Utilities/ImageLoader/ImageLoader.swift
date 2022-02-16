@@ -16,7 +16,7 @@ final class ImageLoader {
     // MARK: loadImage
 
     func loadImage<T: URLGettable>(for model: T, completion: @escaping (T, UIImage?, Error?) -> Void) -> Cancellable {
-        let task = URLSession.shared.dataTask(with: model.iconURL!) { data, _, error in
+        return NetworkLayer.shared.task(for: model.iconURL!) { data, error in
             var image: UIImage?
             var downloadError: Error?
 
@@ -36,8 +36,5 @@ final class ImageLoader {
                 image = img
             }
         }
-        task.resume()
-
-        return task
     }
 }

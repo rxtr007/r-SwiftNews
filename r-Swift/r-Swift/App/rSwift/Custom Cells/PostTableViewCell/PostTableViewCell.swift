@@ -9,6 +9,8 @@ import UIKit
 class PostTableViewCell: UITableViewCell {
     private static var thumbnailImageViewDefaultTop: CGFloat = Constants.CGFloatValue.k8
     private static var thumbnailImageViewDefaultBottom: CGFloat = Constants.CGFloatValue.k8
+    private static var thumbnailImageViewMaxHeight: Int = Constants.CGFloatValue.k200.intValue
+    private static var thumbnailImageViewMinHeight: Int = Constants.CGFloatValue.k44.intValue
     private static var thumbnailImageViewDefaultHeight: CGFloat = Constants.CGFloatValue.k80
 
     private static var awardsCollectionViewDefaultTop: CGFloat = Constants.CGFloatValue.k4
@@ -90,7 +92,9 @@ class PostTableViewCell: UITableViewCell {
             activityIndicatorView.isHidden = false
             activityIndicatorView.startAnimating()
             if let height = post.thumbnailHeight, height != k0, let width = post.thumbnailWidth, width != k0 {
-                thumbnailImageViewHeightConstraint.constant = CGFloat(height * Constants.CGFloatValue.k2.intValue)
+                let imageHeight = height < PostTableViewCell.thumbnailImageViewMinHeight ? PostTableViewCell.thumbnailImageViewMinHeight : (height > PostTableViewCell.thumbnailImageViewMaxHeight ? PostTableViewCell.thumbnailImageViewMaxHeight : height * Constants.CGFloatValue.k2.intValue)
+
+                thumbnailImageViewHeightConstraint.constant = CGFloat(imageHeight)
                 thumbnailImageView.contentMode = .scaleToFill
                 thumbnailImageView.layer.cornerRadius = Constants.CGFloatValue.k8
                 thumbnailImageView.layer.borderColor = UIColor.cyan.cgColor

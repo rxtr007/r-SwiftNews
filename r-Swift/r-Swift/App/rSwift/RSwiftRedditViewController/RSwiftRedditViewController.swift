@@ -122,7 +122,7 @@ class RSwiftRedditViewController: UIViewController {
         DispatchQueue.main.async {
             self.activityIndicator.startAnimating()
         }
-        viewModel.loadRedditPosts(onError: { [weak self] error in
+        viewModel.requestRedditPosts(onError: { [weak self] error in
             if error {
                 DispatchQueue.main.async {
                     self?.showCustomAlert()
