@@ -10,7 +10,7 @@ class PostDetailTableViewCell: UITableViewCell {
     private static var thumbnailImageViewDefaultBottom: CGFloat = Constants.CGFloatValue.k8
     private static var thumbnailImageViewDefaultHeight: CGFloat = Constants.CGFloatValue.k80
 
-    @IBOutlet private var postDescriptionLabel: UILabel!
+    @IBOutlet weak var postDescriptionLabel: UILabel!
 
     @IBOutlet private var thumbnailImageView: UIImageView!
     @IBOutlet private var thumbnailImageViewBottomConstraint: NSLayoutConstraint!

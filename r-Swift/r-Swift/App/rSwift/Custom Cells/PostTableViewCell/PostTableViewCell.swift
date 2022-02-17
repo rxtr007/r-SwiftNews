@@ -21,7 +21,7 @@ class PostTableViewCell: UITableViewCell {
     private static var awardsIconDefaultHeight: CGFloat = Constants.CGFloatValue.k35
     private static var awardsIconDefaultWidth: CGFloat = Constants.CGFloatValue.k35
 
-    @IBOutlet private var postTitleLabel: UILabel!
+    @IBOutlet weak var postTitleLabel: UILabel!
 
     @IBOutlet private var thumbnailImageContainerView: UIView!
     @IBOutlet private var thumbnailImageView: UIImageView!

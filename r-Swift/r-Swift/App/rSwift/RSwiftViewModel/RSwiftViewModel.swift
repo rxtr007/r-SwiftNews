@@ -7,17 +7,19 @@ import UIKit.UIImage
 
 // MARK: - RSwiftViewModel
 
-struct RSwiftViewModel {
+struct RSwiftViewModel: RSwiftPostsProtocol {
     /// number of posts in reddit channel r/Swift
     var posts: Observable<[PostCellModel]> = Observable([])
     
-    // MARK: loadRedditPosts
+    var network: NetworkLayer = NetworkLayer.shared
+    
+    // MARK: requestRedditPosts
 
     /// Load Reddit Posts by making the Network Request
     func requestRedditPosts(onError: @escaping (Bool) -> Void) {
         guard let url = URL(string: "\(Constants.API.BaseURL)\(Constants.API.Endpoint)") else { onError(true); return }
         
-        NetworkLayer.shared.makeRequest(for: url) { data, error in
+        network.makeRequest(for: url) { data, error in
             
             guard error == nil else { onError(true); return }
             
@@ -29,7 +31,7 @@ struct RSwiftViewModel {
 
     // MARK: handleResponse
 
-    private func handleResponse(from data: Data, isError: @escaping (Bool) -> Void) {
+    func handleResponse(from data: Data, isError: @escaping (Bool) -> Void) {
         do {
             let redditPosts = try JSONDecoder().decode(Model.self, from: data)
             
@@ -44,7 +46,7 @@ struct RSwiftViewModel {
     
     // MARK: save
 
-    private func save(_ redditPosts: [Posts]) {
+    func save(_ redditPosts: [Posts]) {
         var image: UIImage!
         
         if #available(iOS 13.0, *) {

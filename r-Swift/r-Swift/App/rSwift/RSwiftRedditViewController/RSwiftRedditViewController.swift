@@ -34,7 +34,7 @@ class RSwiftRedditViewController: UIViewController {
 
     static let operationQueue = OperationQueue()
 
-    private var viewModel: RSwiftViewModel!
+    var viewModel: RSwiftPostsProtocol!
 
     // MARK: viewDidAppear
 
@@ -193,5 +193,14 @@ extension RSwiftRedditViewController: UITableViewDelegate {
         postDetailsViewController.post = post
 
         navigationController?.pushViewController(postDetailsViewController, animated: true)
+    }
+}
+
+// MARK: - Identifiable
+
+extension RSwiftRedditViewController: Identifiable {
+    /// Identifiable Conformance for setting identifier
+    static var identifier: String {
+        return String(describing: self)
     }
 }
